@@ -14,7 +14,83 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      candidates: {
+        Row: {
+          created_at: string
+          education: string
+          file_name: string
+          full_name: string
+          id: string
+          job_id: string | null
+          justification: string
+          match_score: number
+          resume_text: string
+          skills: string[]
+          user_id: string
+          years_experience: number
+        }
+        Insert: {
+          created_at?: string
+          education?: string
+          file_name?: string
+          full_name?: string
+          id?: string
+          job_id?: string | null
+          justification?: string
+          match_score?: number
+          resume_text?: string
+          skills?: string[]
+          user_id: string
+          years_experience?: number
+        }
+        Update: {
+          created_at?: string
+          education?: string
+          file_name?: string
+          full_name?: string
+          id?: string
+          job_id?: string | null
+          justification?: string
+          match_score?: number
+          resume_text?: string
+          skills?: string[]
+          user_id?: string
+          years_experience?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "candidates_job_id_fkey"
+            columns: ["job_id"]
+            isOneToOne: false
+            referencedRelation: "job_descriptions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      job_descriptions: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          title?: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
